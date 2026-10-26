@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum, Thoma & Co.</title>
+  <link rel="icon" type="image/png" href="fav.png">
+  <meta name="theme-color" content="#194026">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <style>
+
+.legal {
+  max-width: 800px;
+  margin: 100px auto 0 auto;
+  padding: 40px 32px 80px 32px;
+  font-family: 'copy';
+}
+
+.legal section {
+  margin-bottom: 80px;
+}
+
+.legal h1 {
+  font-size: 28px;
+  font-weight: normal;
+  margin-bottom: 40px;
+  font-family: 'head';
+}
+
+.legal h2 {
+  font-size: 17px;
+  font-weight: normal;
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.legal p {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+@media (max-width: 768px) {
+  .legal {
+    margin-top: 70px;
+    padding: 30px 24px 60px 24px;
+  }
+
+  .legal section {
+    margin-bottom: 60px;
+  }
+
+  .legal h1 {
+    font-size: 24px;
+  }
+
+  .legal h2 {
+    font-size: 16px;
+  }
+
+  .legal p {
+    font-size: 14px;
+  }
+}
+
+    @font-face {
+      font-family: 'head';
+      src: url('fonts/head.otf') format('opentype');
+    }
+
+    :root {
+      --green: #1f4598;
+      --accent: #f8efe7;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background-color: var(--white);
+      font-family: 'head', serif;
+      color: var(--green);
+      min-height: 100vh;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* ================= HEADER ================= */
+
+  header {
+      -webkit-backdrop-filter: blur(12px) saturate(140%); /* Safari */
+      backdrop-filter: blur(12px) saturate(140%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22); /* feine Glaskante */
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      padding: 20px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.44), 0 2px 8px rgba(0, 0, 0, 0.44);
+      --icon-shadow: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.44)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.44));
+    }
+
+ nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      line-height: 1;
+    }
+
+  .logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: 0 !important;
+  text-decoration: none;
+  pointer-events: auto; 
+  z-index: 1010;
+}
+
+  .logo img {
+  height: 15px;
+  display: block;
+  pointer-events: auto;
+}
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 32px;
+    }
+
+    nav a {
+      margin-left: 32px;
+      text-decoration: none;
+      font-size: 15px;
+      color: var(--white);
+      text-shadow: var(--text-shadow);
+    }
+
+    .social-icon img {
+      width: 15px;
+      height: auto;
+      display: block;
+    }
+
+    .logo img, .social-icon img { filter: var(--icon-shadow); }
+
+    .collection-heading {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    padding: 0 32px;
+    color: var(--green);
+    font-size: 28px;
+    }
+
+    /* ================= BURGER ================= */
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      position: absolute;
+      right: 32px;
+      z-index: 1100;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    /* ================= SIDE MENU ================= */
+
+    .side-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--green);
+      z-index: 1050;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .side-menu.open {
+      display: flex;
+    }
+
+    .side-menu a {
+      text-decoration: none;
+      font-size: 17px;
+      color: var(--white);
+      font-family: 'head', serif;
+    }
+
+    .side-menu a:hover {
+      opacity: 0.7;
+    }
+
+    .side-menu-close {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      position: fixed;
+      top: 2.5px;
+      right: 32px;
+      z-index: 1060;
+      background: none;
+      border: none;
+      padding: 0;
+      height: 35px;
+    }
+
+    .side-menu-close span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    main {
+      padding: 40px 32px 64px 32px;
+    }
+
+.gallery {
+  max-width: 1200px;
+  margin: 80px auto 0 auto;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);  
+  gap: 16px;
+  justify-content: center;
+}
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  pointer-events: auto;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+    footer {
+      margin-top: 120px;
+      padding: 80px 24px;
+      text-align: center;
+      font-size: 10px;
+      color: var(--green);
+      border-top: none;
+      font-family: 'copy';
+    }
+
+/* ================= RESPONSIVE ================= */
+
+    @media (max-width: 335px) {
+      .logo img { height: 12px; }
+      nav a { margin-left: 10px; font-size: 15px; }
+      body {padding-top: 40px;}
+    }
+
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      body {padding-top: 40px;}
+    }
+
+    @media (max-width: 900px) {
+      .nav-right { display: none; }
+      .burger { display: flex; }
+      .logo img { height: 14px; }
+      nav a { margin-left: 17px; font-size: 15px; }
+      body {padding-top: 40px;}
+       .gallery {
+    grid-template-columns: 1fr;
+      margin: 10px auto 0 auto;
+      padding: 0 0px;
+  }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+      <a href="index.html" class="logo">
+    <img src="logo.png" alt="Logo" draggable="false">
+  </a>
+
+    <div class="nav-right">
+      <a href="index.html" class="active">Kollektion</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="https://www.instagram.com/thomaundco/" target="_blank" class="social-icon">
+        <img src="social.png" alt="Instagram" draggable="false">
+      </a>
+    </div>
+
+    <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="side-menu" id="sideMenu">
+  <button class="side-menu-close" id="menuClose" aria-label="Menü schließen">
+    <span></span>
+    <span></span>
+  </button>
+  <a href="index.html">Kollektion</a>
+  <a href="galerie.html">Galerie</a>
+  <a href="https://www.instagram.com/thomaundco/" target="_blank">Instagram</a>
+</div>
+
+<main class="legal">
+
+  <section>
+    <h1>Impressum</h1>
+
+    <h2>Angaben gemäß § 5 DDG</h2>
+
+    <p>
+      <strong>Thoma & Co.</strong><br>
+      Rügenwalder Straße 33<br>
+      22143 Hamburg<br>
+      Deutschland
+    </p>
+
+    <p>
+     <strong>Inhaber Moritz Rippe</strong><br>
+      hallo@mouleina.com
+    </p>
+  </section>
+
+
+  <section>
+    <h1>Widerrufsbelehrung</h1>
+
+    <p>
+      Du hast das Recht, innerhalb von 14 Tagen ohne Angabe von Gründen
+      diesen Vertrag zu widerrufen.
+    </p>
+
+    <p>
+      Die Widerrufsfrist beträgt 14 Tage ab dem Tag, an dem du oder eine von
+      dir benannte Person die Ware erhalten hast.
+    </p>
+
+    <p>
+      Um dein Widerrufsrecht auszuüben, kontaktiere uns bitte innerhalb
+      dieser Frist per Mail unter hallo@mouleina.com und teile uns mit,
+      dass du den Kauf widerrufen möchtest.
+    </p>
+
+    <p>
+      Nach dem Widerruf erstatten wir dir alle erhaltenen Zahlungen
+      einschließlich der Kosten für den Standardversand unverzüglich,
+      innerhalb von 14 Tagen.
+    </p>
+  </section>
+
+
+  <section>
+    <h1>Allgemeine Geschäftsbedingungen</h1>
+
+    <h2>1. Geltungsbereich</h2>
+    <p>
+      Diese Allgemeinen Geschäftsbedingungen gelten für alle Bestellungen
+      bei Thoma & Co.
+    </p>
+
+    <h2>2. Vertragsschluss</h2>
+    <p>
+      Ein Kaufvertrag kommt zustande, sobald wir deine Bestellung per
+      Email oder Instagram-Direktnachricht bestätigen.
+    </p>
+
+    <h2>3. Preise und Zahlung</h2>
+    <p>
+      Alle angegebenen Preise sind Endpreise. Die verfügbaren
+      Zahlungsmöglichkeiten werden dir bei der Bestellung mitgeteilt.
+    </p>
+
+    <h2>4. Versand</h2>
+    <p>
+      Die Lieferung erfolgt an die bei der Bestellung angegebene Adresse.
+      Die voraussichtliche Lieferzeit wird dir bei der Bestätigung mitgeteilt.
+    </p>
+
+    <h2>5. Rücksendung und Widerruf</h2>
+    <p>
+      Du hast das gesetzliche Recht, deine Bestellung innerhalb von 14 Tagen
+      ohne Angabe von Gründen zu widerrufen. Die Kosten der Rücksendung (Rücksendeetikett)
+      übernehmen wir selbstverständlich. Da wir ein sehr kleines Unternehmen sind, bitten wir dich, dies bei deiner Bestellung zu berücksichtigen. 
+      Jede Bestellung wird von uns mit viel Aufwand sorgfältig vorbereitet und versendet. Kostenlose Rücksendungen verursachen für uns zusätzliche Kosten und Aufwand.
+    </p>
+
+    <h2>6. Schlussbestimmungen</h2>
+    <p>
+      Es gelten die gesetzlichen Bestimmungen.
+    </p>
+  </section>
+
+
+  <section>
+    <h1>Datenschutz</h1>
+
+    <h2>1. Allgemeine Hinweise</h2>
+    <p>
+      Der Schutz deiner persönlichen Daten ist uns wichtig. Personenbezogene
+      Daten werden von uns nur verarbeitet, soweit dies zur Bearbeitung
+      deiner Anfrage oder Bestellung sowie zur Erfüllung gesetzlicher
+      Verpflichtungen erforderlich ist.
+    </p>
+
+    <h2>2. Kontaktaufnahme</h2>
+    <p>
+      Wenn du uns per Email oder Instagram kontaktierst, können dabei
+      personenbezogene Daten wie dein Name, deine Email-Adresse und die
+      von dir mitgeteilten Informationen verarbeitet werden.
+    </p>
+
+    <h2>3. Bestellungen</h2>
+    <p>
+      Die von dir im Rahmen einer Bestellung übermittelten Daten werden
+      ausschließlich zur Bearbeitung und Abwicklung der Bestellung
+      verwendet, soweit keine gesetzliche Verpflichtung zur weiteren
+      Speicherung besteht.
+    </p>
+
+    <h2>4. Instagram</h2>
+    <p>
+      Für die Kommunikation über Instagram gelten zusätzlich die
+      Datenschutzbestimmungen von Meta Platforms Ireland Limited.
+    </p>
+
+    <h2>5. Deine Rechte</h2>
+    <p>
+      Du hast im Rahmen der gesetzlichen Bestimmungen das Recht auf
+      Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung
+      und Widerspruch gegen die Verarbeitung deiner personenbezogenen Daten.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  Copyright © 2026 Thoma & Co. Alle Rechte vorbehalten.
+</footer>
+
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const menuClose = document.getElementById('menuClose');
+  const sideMenu = document.getElementById('sideMenu');
+
+  burgerBtn.addEventListener('click', function () {
+    sideMenu.classList.add('open');
+  });
+
+  menuClose.addEventListener('click', function () {
+    sideMenu.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>

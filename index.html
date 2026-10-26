@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kollektion, Thoma & Co.</title>
+  <link rel="icon" type="image/png" href="fav.png">
+  <meta name="theme-color" content="#194026">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <style>
+    @font-face {
+      font-family: 'head';
+      src: url('fonts/head.otf') format('opentype');
+    }
+
+        @font-face {
+        font-family: 'copy';
+        src: url('fonts/copy.otf') format('opentype');
+}
+
+    :root {
+      --green: #1f4598;
+      --accent: #e5f1f1;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background-color: var(--white);
+      font-family: 'head', serif;
+      color: var(--green);
+      min-height: 100vh;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      -webkit-backdrop-filter: blur(12px) saturate(140%); /* Safari */
+      backdrop-filter: blur(12px) saturate(140%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22); /* feine Glaskante */
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      padding: 20px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.44), 0 2px 8px rgba(0, 0, 0, 0.44);
+      --icon-shadow: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.44)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.44));
+    }
+
+ nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      line-height: 1;
+    }
+
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .logo img {
+      height: 15px;
+      display: block;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 32px;
+    }
+
+    nav a {
+      margin-left: 32px;
+      text-decoration: none;
+      font-size: 15px;
+      color: var(--white);
+      text-shadow: var(--text-shadow);
+    }
+
+    .social-icon img {
+      width: 15px;
+      height: auto;
+      display: block;
+    }
+
+    .logo img, .social-icon img { filter: var(--icon-shadow); }
+
+    .collection-heading {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    padding: 0 32px;
+    color: var(--green);
+    font-size: 28px;
+    }
+
+    /* ================= BURGER ================= */
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      position: absolute;
+      right: 32px;
+      z-index: 1100;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    /* ================= SIDE MENU ================= */
+
+    .side-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--green);
+      z-index: 1050;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .side-menu.open {
+      display: flex;
+    }
+
+    .side-menu a {
+      text-decoration: none;
+      font-size: 17px;
+      color: var(--white);
+      font-family: 'head', serif;
+    }
+
+    .side-menu a:hover {
+      opacity: 0.7;
+    }
+
+    .side-menu-close {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      position: fixed;
+      top: 2.5px;
+      right: 32px;
+      z-index: 1060;
+      background: none;
+      border: none;
+      padding: 0;
+      height: 35px;
+    }
+
+    .side-menu-close span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    /* ================= CAROUSEL ================= */
+
+    .carousel {
+      margin: 0;
+      width: 100vw;
+      overflow: hidden;
+      position: relative;
+      background: var(--accent);
+    }
+
+    .carousel-track {
+      display: flex;
+      width: 400%;
+      animation: slide 40s infinite;
+    }
+
+    .carousel-track img {
+      width: 25%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    @keyframes slide {
+      0%   { transform: translateX(0); }
+      20%  { transform: translateX(0); }
+      25%  { transform: translateX(-25%); }
+      45%  { transform: translateX(-25%); }
+      50%  { transform: translateX(-50%); }
+      70%  { transform: translateX(-50%); }
+      75%  { transform: translateX(-75%); }
+      95%  { transform: translateX(-75%); }
+      100% { transform: translateX(0); }
+    }
+
+    main {
+      padding: 40px 32px 64px 32px;
+    }
+
+    /* ================= GRID ================= */
+
+    .grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    /* ================= PRODUKTKARTE ================= */
+
+    .product-card {
+      text-decoration: none;
+      color: var(--green);
+      background-color: var(--accent);
+      padding: 20px;
+      transition: transform 0.2s ease;
+    }
+
+    .product-card:hover { transform: translateY(-2px); }
+
+    .product-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background-color: #ffffff;
+      display: block;
+    }
+
+    .product-card .title {
+      margin-top: 14px;
+      font-size: 17px;
+    }
+
+    footer {
+      margin-top: 120px;
+      padding: 80px 24px;
+      text-align: center;
+      font-size: 10px;
+      color: var(--green);
+      border-top: none;
+      font-family: 'copy';
+    }
+
+    footer a {
+      color: var(--green);
+      text-decoration: none;
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+.about-section {
+  max-width: 1200px;
+  margin: 120px auto 0 auto;
+  padding: 0 32px;
+}
+
+.about-heading {
+  font-size: 28px;
+  margin-bottom: 44px;
+}
+
+.about-text {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+    background-color: var(--accent);
+  padding: 32px;
+}
+
+.about-text p {
+  font-family: 'copy';
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+  @media (max-width: 900px) {
+  .nav-right { display: none; }
+  .burger { display: flex; }
+  .logo img { height: 14px; }
+  nav a { margin-left: 17px; font-size: 15px; }
+  .carousel { height: auto; }
+  body { padding-top: 40px; }
+  .collection-heading {
+    font-size: 18px;
+    margin: 24px auto 0 auto;
+    padding: 0 16px;
+  }
+  .about-heading {
+    font-size: 18px;
+    margin-bottom: 14px;
+  }
+  .about-text {
+    max-width: 700px;
+    font-family: 'copy';
+    line-height: 1.6;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  body { 
+    padding-top: 40px;
+    overflow-x: hidden;
+  }
+  .carousel { height: auto; }
+  .collection-heading {
+    font-size: 18px;
+    margin: 24px auto 0 auto;
+    padding: 0 16px;
+  }
+  main {
+    padding: 24px 16px 64px 16px;
+  }
+  .grid { 
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    max-width: 100%;
+  }
+  .product-card {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 335px) {
+  .logo img { height: 12px; }
+  nav a { margin-left: 10px; font-size: 15px; }
+  .carousel { height: auto; }
+  body { padding-top: 40px; }
+  .collection-heading {
+    font-size: 15px;
+    margin: 24px auto 0 auto;
+    padding: 0 20px;
+  }
+}
+    
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      <img src="logo.png" alt="Logo" draggable="false">
+    </div>
+
+    <div class="nav-right">
+      <a href="index.html" class="active">Kollektion</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="https://www.instagram.com/thomaundco/" target="_blank" class="social-icon">
+        <img src="social.png" alt="Instagram" draggable="false">
+      </a>
+    </div>
+
+    <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="side-menu" id="sideMenu">
+  <button class="side-menu-close" id="menuClose" aria-label="Menü schließen">
+    <span></span>
+    <span></span>
+  </button>
+  <a href="index.html">Kollektion</a>
+  <a href="galerie.html">Galerie</a>
+  <a href="https://www.instagram.com/thomaundco/" target="_blank">Instagram</a>
+</div>
+
+<section class="carousel">
+  <div class="carousel-track">
+    <img src="images/k1.jpg" draggable="false">
+    <img src="images/k2.jpg" draggable="false">
+    <img src="images/k3.jpg" draggable="false">
+    <img src="images/k4.jpg" draggable="false">
+  </div>
+</section>
+<div class="collection-heading">
+  Kollektion
+</div>
+<main>
+  <section class="grid">
+
+    <a href="produkt-01.html" class="product-card">
+      <img src="images/anhaenger_1.jpg" alt="Produkt 01" draggable="false">
+      <div class="title">Schlüsselanhänger</div>
+    </a>
+
+    <a href="produkt-02.html" class="product-card">
+      <img src="images/taschenentleerer_1.jpg" alt="Produkt 02" draggable="false">
+      <div class="title">Valet Tray</div>
+    </a>
+
+    <a href="produkt-03.html" class="product-card">
+      <img src="images/essentials.jpg" alt="Produkt 03" draggable="false">
+      <div class="title">Essentials-Tasche</div>
+    </a>
+
+    <a href="produkt-04.html" class="product-card">
+      <img src="images/schlu_klein1.JPG" alt="Produkt 04" draggable="false">
+      <div class="title">Schlüsselanhänger, klein</div>
+    </a>
+
+  </section>
+</main>
+<section class="about-section">
+
+  <div class="about-heading">
+    About
+  </div>
+
+  <div class="about-text">
+    <p>In Norddeutschland entwerfen und gestalten wir Produkte in traditioneller Handarbeit, von denen wir glauben, dass sie ein Leben lang Freude bereiten können.</p>
+
+    <p>Die Marke Thoma & Co. entstand aus einer engen Freundschaft während der Schulzeit mit dem Ziel mehr Menschen als nur unsere Familie und Freunde mit unseren Kreationen auszustatten.</p> <br>
+
+    <p>Noch ein Hinweis: Vor allem unsere Keramikobjekte haben tendenziell eine lange Lieferzeit, da wir ein kleines Team sind. Lagernde Artikel versenden wir innerhalb einer Woche.</p> <br>
+
+    <p>Bei Fragen und Feedback freuen wir uns über eine Mail an hallo@mouleina.com</p>
+
+  </div>
+
+</section>
+
+<footer>
+  Copyright © 2026 Thoma & Co. Alle Rechte vorbehalten.
+  <a href="imprint.html">Impressum, Widerruf</a>
+</footer>
+
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const menuClose = document.getElementById('menuClose');
+  const sideMenu = document.getElementById('sideMenu');
+
+  burgerBtn.addEventListener('click', function () {
+    sideMenu.classList.add('open');
+  });
+
+  menuClose.addEventListener('click', function () {
+    sideMenu.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thoma & Co.</title>
+  <link rel="icon" type="image/png" href="fav.png">
+  <meta name="theme-color" content="#194026">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <style>
+    @font-face {
+      font-family: 'head';
+      src: url('fonts/head.otf') format('opentype');
+    }
+
+    @font-face {
+  font-family: 'copy';
+  src: url('fonts/copy.otf') format('opentype');
+}
+
+    :root {
+      --green: #1f4598;
+      --accent: #e5f1f1;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background-color: var(--white);
+      font-family: 'head', serif;
+      color: var(--green);
+      min-height: 100vh;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      -webkit-backdrop-filter: blur(12px) saturate(140%); /* Safari */
+      backdrop-filter: blur(12px) saturate(140%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22); /* feine Glaskante */
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      padding: 20px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.44), 0 2px 8px rgba(0, 0, 0, 0.44);
+      --icon-shadow: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.44)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.44));
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+  .logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: 0 !important;
+  text-decoration: none;
+  pointer-events: auto; 
+  z-index: 1010;
+}
+
+  .logo img {
+  height: 15px;
+  display: block;
+  pointer-events: auto;
+}
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 32px;
+    }
+
+    nav a {
+      margin-left: 32px;
+      text-decoration: none;
+      font-size: 15px;
+      color: var(--white);
+      text-shadow: var(--text-shadow);
+    }
+
+    .social-icon img {
+      width: 15px;
+      height: auto;
+      display: block;
+    }
+
+    .logo img, .social-icon img { filter: var(--icon-shadow); }
+
+    /* ================= BURGER ================= */
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      position: absolute;
+      right: 32px;
+      z-index: 1100;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    /* ================= SIDE MENU ================= */
+
+    .side-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--green);
+      z-index: 1050;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .side-menu.open {
+      display: flex;
+    }
+
+    .side-menu a {
+      text-decoration: none;
+      font-size: 17px;
+      color: var(--white);
+      font-family: 'head', serif;
+    }
+
+    .side-menu a:hover {
+      opacity: 0.7;
+    }
+
+    .side-menu-close {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      position: fixed;
+      top: 2.5px;
+      right: 32px;
+      z-index: 1060;
+      background: none;
+      border: none;
+      padding: 0;
+      height: 35px;
+    }
+
+    .side-menu-close span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    /* ================= PRODUCT PAGE ================= */
+
+    main {
+      padding-top: 140px;
+    }
+
+    .product-section {
+      max-width: 1200px;
+      margin: 40px auto 0 auto;
+      padding: 0 32px;
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+      
+    }
+
+    .product-image {
+      width: 400px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background-color: #eaeace;
+    }
+
+    .product-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-right: 180px;
+    }
+
+    .product-content h1 {
+      font-size: 22px;
+    }
+
+    .product-content p {
+  font-family: 'copy';
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+    .product-button {
+      margin-top: 10px;
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: var(--green);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 12px;
+      width: fit-content;
+      transition: opacity 0.2s ease;
+    }
+
+    .product-button:hover {
+      background-color: #d71735;
+    }
+
+/* ================= PRODUCT CAROUSEL ================= */
+
+.product-carousel {
+  position: relative;
+  width: 400px;
+  overflow: hidden;
+  background-color: #e3e4ea;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.carousel-track img {
+  width: 400px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(211, 211, 211, 0); /* halbtransparentes Hellgrau */
+  -webkit-backdrop-filter: blur(22px);          /* Safari */
+  backdrop-filter: blur(22px);
+  color: #d71735;
+  border: 1px solid rgba(255, 255, 255, 0.2);   /* feine helle Kante */
+  border-radius: 0px;
+  font-size: 16px;
+  padding: 6px 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
+.carousel-btn:hover {
+  opacity: 0.8;
+}
+
+ footer {
+      margin-top: 120px;
+      padding: 80px 24px;
+      text-align: center;
+      font-size: 10px;
+      font-family: 'copy';
+    }
+
+      footer a {
+      color: var(--green);
+      text-decoration: none;
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+/* ================= RESPONSIVE ================= */
+
+    @media (max-width: 335px) {
+      .logo img { height: 12px; }
+      nav a { margin-left: 10px; font-size: 15px; }
+       main {
+      padding-top: 40px;
+    }
+    }
+
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+       main {
+      padding-top: 40px;
+    }
+    }
+
+    @media (max-width: 900px) {
+      .nav-right { display: none; }
+      .burger { display: flex; }
+      .logo img { height: 14px; }
+       main {
+      padding-top: 40px;
+      }
+       .product-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-right: 0px;
+    }
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(211, 211, 211, 0); /* halbtransparentes Hellgrau */
+  -webkit-backdrop-filter: blur(22px);          /* Safari */
+  backdrop-filter: blur(22px);
+  color: #d71735;
+  border: 1px solid rgba(255, 255, 255, 0.2);   /* feine helle Kante */
+  border-radius: 0px;
+  font-size: 22px;
+  padding: 6px 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+      .product-section {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .product-carousel {
+  width: 100%;
+}
+
+.carousel-track img {
+  width: 100%;
+}
+
+      .product-carousel {
+  width: 100%;
+}
+
+.carousel-track img {
+  width: 100%;
+}
+
+      .product-content {
+        width: 100%;
+      }
+
+      .product-content h1 {
+        font-size: 18px;
+      }
+
+      .product-content p {
+        font-size: 15px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+<nav>
+  <a href="index.html" class="logo">
+    <img src="logo.png" alt="Logo" draggable="false">
+  </a>
+
+  <div class="nav-right">
+    <a href="index.html" class="active">Kollektion</a>
+    <a href="galerie.html">Galerie</a>
+    <a href="https://www.instagram.com/thomaundco/" target="_blank" class="social-icon">
+      <img src="social.png" alt="Instagram" draggable="false">
+    </a>
+  </div>
+
+  <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+</header>
+
+<div class="side-menu" id="sideMenu">
+  <button class="side-menu-close" id="menuClose" aria-label="Menü schließen">
+    <span></span>
+    <span></span>
+  </button>
+  <a href="index.html">Kollektion</a>
+  <a href="galerie.html">Galerie</a>
+  <a href="https://www.instagram.com/thomaundco/" target="_blank">Instagram</a>
+</div>
+
+<main>
+  <section class="product-section">
+  <div class="product-carousel">
+  <button class="carousel-btn prev">&#10094;</button>
+
+  <div class="carousel-track">
+    <img src="images/essentials.jpg" alt="Essentials-Tasche 1">
+    <img src="images/tasche_2.jpg" alt="Essentials-Tasche 2">
+    <img src="images/tasche_3.jpg" alt="Essentials-Tasche 3">
+  </div>
+
+  <button class="carousel-btn next">&#10095;</button>
+</div>
+  <div class="product-content">
+      <h1>Essentials-Tasche</h1>
+      <p>
+        Du gehst aus und brauchst Platz für deine sieben Sachen?
+        Die Essentials-Tasche bietet dir eine perfekte Möglichkeit, nicht auf 
+        die Dinge zu verzichten, die du mitnehmen möchtest. Die Tasche wird durch deine Initialen zu 
+        deinem ganz persönlichen Produkt gemacht. 
+        <br><br>
+        Jedes Stück ist in Deutschland handgefertigt und trägt die charakteristischen Spuren der Handarbeit, 
+        die es unverwechselbar machen.<br><br>
+
+        Größe: Circa 24x15cm<br>
+        Material: Leder aus Deutschland, Cord<br>
+        Farbe: braun & rot<br>
+        Kostenlos personalisierbar mit Initialen<br>
+        Referenznummer: #TC0137<br><br>
+        €79,00 EUR Inkl. Versand (DE)
+</p>
+      <a href="mailto:hallo@mouleina.com?subject=Essentials-Tasche%20%23TC0137" class="product-button">
+        Kaufen
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Copyright © 2026 Thoma & Co. Alle Rechte vorbehalten.
+  <a href="imprint.html">Impressum, Widerruf</a>
+</footer>
+
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const menuClose = document.getElementById('menuClose');
+  const sideMenu = document.getElementById('sideMenu');
+
+  burgerBtn.addEventListener('click', function () {
+    sideMenu.classList.add('open');
+  });
+
+  menuClose.addEventListener('click', function () {
+    sideMenu.classList.remove('open');
+  });
+
+  // ================= CAROUSEL =================
+
+const track = document.querySelector('.carousel-track');
+const slides = document.querySelectorAll('.carousel-track img');
+const nextBtn = document.querySelector('.carousel-btn.next');
+const prevBtn = document.querySelector('.carousel-btn.prev');
+
+let index = 0;
+
+function updateCarousel() {
+  const slideWidth = slides[0].clientWidth;
+  track.style.transform = `translateX(-${index * slideWidth}px)`;
+}
+
+nextBtn.addEventListener('click', () => {
+  index = (index + 1) % slides.length;
+  updateCarousel();
+});
+
+prevBtn.addEventListener('click', () => {
+  index = (index - 1 + slides.length) % slides.length;
+  updateCarousel();
+});
+
+window.addEventListener('resize', updateCarousel);
+</script>
+
+</body>
+</html>

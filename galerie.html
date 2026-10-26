@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerie, Thoma & Co.</title>
+  <link rel="icon" type="image/png" href="fav.png">
+  <meta name="theme-color" content="#194026">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <style>
+    @font-face {
+      font-family: 'head';
+      src: url('fonts/head.otf') format('opentype');
+    }
+
+    :root {
+      --green: #1f4598;
+      --accent: #f8efe7;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background-color: var(--white);
+      font-family: 'head', serif;
+      color: var(--green);
+      min-height: 100vh;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      -webkit-backdrop-filter: blur(12px) saturate(140%); /* Safari */
+      backdrop-filter: blur(12px) saturate(140%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22); /* feine Glaskante */
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      padding: 20px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.44), 0 2px 8px rgba(0, 0, 0, 0.44);
+      --icon-shadow: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.44)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.44));
+    }
+
+ nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      line-height: 1;
+    }
+
+  .logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: 0 !important;
+  text-decoration: none;
+  pointer-events: auto; 
+  z-index: 1010;
+}
+
+  .logo img {
+  height: 15px;
+  display: block;
+  pointer-events: auto;
+}
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 32px;
+    }
+
+    nav a {
+      margin-left: 32px;
+      text-decoration: none;
+      font-size: 15px;
+      color: var(--white);
+      text-shadow: var(--text-shadow);
+    }
+
+    .social-icon img {
+      width: 15px;
+      height: auto;
+      display: block;
+    }
+
+    .logo img, .social-icon img { filter: var(--icon-shadow); }
+
+    .collection-heading {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    padding: 0 32px;
+    color: var(--green);
+    font-size: 28px;
+    }
+
+    /* ================= BURGER ================= */
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      position: absolute;
+      right: 32px;
+      z-index: 1100;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    /* ================= SIDE MENU ================= */
+
+    .side-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--green);
+      z-index: 1050;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .side-menu.open {
+      display: flex;
+    }
+
+    .side-menu a {
+      text-decoration: none;
+      font-size: 17px;
+      color: var(--white);
+      font-family: 'head', serif;
+    }
+
+    .side-menu a:hover {
+      opacity: 0.7;
+    }
+
+    .side-menu-close {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      position: fixed;
+      top: 2.5px;
+      right: 32px;
+      z-index: 1060;
+      background: none;
+      border: none;
+      padding: 0;
+      height: 35px;
+    }
+
+    .side-menu-close span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    main {
+      padding: 40px 32px 64px 32px;
+    }
+
+.gallery {
+  max-width: 1200px;
+  margin: 80px auto 0 auto;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);  
+  gap: 16px;
+  justify-content: center;
+}
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  pointer-events: auto;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+    footer {
+      margin-top: 120px;
+      padding: 80px 24px;
+      text-align: center;
+      font-size: 10px;
+      color: var(--green);
+      border-top: none;
+      font-family: 'copy';
+    }
+
+    footer a {
+      color: var(--green);
+      text-decoration: none;
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+/* ================= RESPONSIVE ================= */
+
+    @media (max-width: 335px) {
+      .logo img { height: 12px; }
+      nav a { margin-left: 10px; font-size: 15px; }
+      body {padding-top: 40px;}
+    }
+
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      body {padding-top: 40px;}
+    }
+
+    @media (max-width: 900px) {
+      .nav-right { display: none; }
+      .burger { display: flex; }
+      .logo img { height: 14px; }
+      nav a { margin-left: 17px; font-size: 15px; }
+      body {padding-top: 40px;}
+       .gallery {
+    grid-template-columns: 1fr;
+      margin: 10px auto 0 auto;
+      padding: 0 0px;
+  }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+      <a href="index.html" class="logo">
+    <img src="logo.png" alt="Logo" draggable="false">
+  </a>
+
+    <div class="nav-right">
+      <a href="index.html" class="active">Kollektion</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="https://www.instagram.com/thomaundco/" target="_blank" class="social-icon">
+        <img src="social.png" alt="Instagram" draggable="false">
+      </a>
+    </div>
+
+    <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="side-menu" id="sideMenu">
+  <button class="side-menu-close" id="menuClose" aria-label="Menü schließen">
+    <span></span>
+    <span></span>
+  </button>
+  <a href="index.html">Kollektion</a>
+  <a href="galerie.html">Galerie</a>
+  <a href="https://www.instagram.com/thomaundco/" target="_blank">Instagram</a>
+</div>
+
+<main>
+  <div class="gallery">
+
+  <a href="produkt-01.html">
+    <img src="images_gallery/g20.jpg" alt="">
+    </a>
+
+  <a href="produkt-03.html">
+    <img src="images_gallery/g19.jpg" alt="">
+    </a>     
+
+  <img src="images_gallery/g18.jpg" alt=""> 
+
+  <img src="images_gallery/g17.jpg" alt="">
+
+  <img src="images_gallery/g16.jpg" alt="">  
+
+  <img src="images_gallery/g15.jpg" alt="">
+
+  <a href="produkt-04.html">
+    <img src="images_gallery/g14.jpg" alt="">
+    </a>  
+
+  <a href="produkt-03.html">
+    <img src="images_gallery/g13.jpg" alt="">
+    </a>    
+
+  <img src="images_gallery/g12.jpg" alt="">
+
+  <img src="images_gallery/g11.jpg" alt="">
+
+  <img src="images_gallery/g10.jpg" alt="">
+
+  <img src="images_gallery/g9.jpg" alt="">
+
+  <img src="images_gallery/g8.jpg" alt="">
+     
+  <a href="produkt-02.html">
+    <img src="images_gallery/g7.jpg" alt="">
+    </a>      
+
+  <a href="produkt-01.html">
+    <img src="images_gallery/g6.jpg" alt="">
+    </a>   
+
+  <a href="produkt-04.html">
+    <img src="images_gallery/g5.jpg" alt="">
+    </a> 
+
+  <a href="produkt-04.html">
+    <img src="images_gallery/g4.jpg" alt="">
+    </a> 
+
+  <a href="produkt-02.html">
+    <img src="images_gallery/g3.jpg" alt="">
+    </a>
+
+  <img src="images_gallery/g2.jpg" alt="">
+  
+  <a href="produkt-02.html">
+    <img src="images_gallery/g1.jpg" alt="">
+    </a>
+</div>
+</main>
+
+<footer>
+  Copyright © 2026 Thoma & Co. Alle Rechte vorbehalten.
+  <a href="imprint.html">Impressum, Widerruf</a>
+</footer>
+
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const menuClose = document.getElementById('menuClose');
+  const sideMenu = document.getElementById('sideMenu');
+
+  burgerBtn.addEventListener('click', function () {
+    sideMenu.classList.add('open');
+  });
+
+  menuClose.addEventListener('click', function () {
+    sideMenu.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>
