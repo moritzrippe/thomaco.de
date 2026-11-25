@@ -487,17 +487,21 @@
 </footer>
 
 <script>
-  const burgerBtn = document.getElementById('burgerBtn');
-  const menuClose = document.getElementById('menuClose');
-  const sideMenu = document.getElementById('sideMenu');
+const burgerBtn = document.getElementById('burgerBtn');
+const menuClose = document.getElementById('menuClose');
+const sideMenu = document.getElementById('sideMenu');
 
-  burgerBtn.addEventListener('click', function () {
-    sideMenu.classList.add('open');
-  });
+burgerBtn.addEventListener('click', function () {
+  sideMenu.classList.add('open');
+  document.documentElement.classList.add('menu-active');
+  document.body.classList.add('menu-active');
+});
 
-  menuClose.addEventListener('click', function () {
-    sideMenu.classList.remove('open');
-  });
+menuClose.addEventListener('click', function () {
+  sideMenu.classList.remove('open');
+  document.documentElement.classList.remove('menu-active');
+  document.body.classList.remove('menu-active');
+});
 </script>
 
 </body>
