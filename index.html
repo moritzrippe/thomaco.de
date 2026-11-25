@@ -145,10 +145,9 @@
 .side-menu {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: -50px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(31, 69, 152, 0.80);
   backdrop-filter: blur(17px);
   -webkit-backdrop-filter: blur(17px);
@@ -157,7 +156,6 @@
   justify-content: center;
   align-items: center;
   gap: 40px;
-
 }
 
     .side-menu.open {
