@@ -208,19 +208,18 @@
     /* ================= SIDE MENU ================= */
 
     .side-menu {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: var(--green);
-      z-index: 1050;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
-    }
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(31, 69, 152, 0.80);
+  backdrop-filter: blur(17px);
+  -webkit-backdrop-filter: blur(17px);
+  z-index: 1050;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
 
     .side-menu.open {
       display: flex;
